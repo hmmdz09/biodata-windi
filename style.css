@@ -567,7 +567,7 @@ body {
 .hero-photo-card {
     position: relative;
     width: 100%;
-    max-width: 440px;
+    max-width: 480px;
     border-radius: var(--radius-xl);
     overflow: visible;
     box-shadow: var(--shadow-card);
@@ -596,7 +596,7 @@ body {
     overflow: hidden;
     z-index: 2;
     background: var(--bg-card-solid);
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 556 / 730;
 }
 
 .hero-main-img {
@@ -2243,5 +2243,35 @@ body {
     .btn-primary-pink, .btn-secondary-pink {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   INTERACTIVE CURSOR HEART TRAIL ("JEJAK LOVE KECIL-KECIL")
+   ========================================================================== */
+.cursor-heart-particle {
+    position: fixed;
+    pointer-events: none;
+    user-select: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1;
+    will-change: transform, opacity;
+    animation: floatHeartTrail var(--anim-duration, 0.9s) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes floatHeartTrail {
+    0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(var(--scale-start, 0.75)) rotate(var(--rot-start, 0deg));
+    }
+    35% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate3d(calc(var(--drift-x, 0px) * 0.4), calc(var(--drift-y, -25px) * 0.4), 0) scale(var(--scale-peak, 1.2)) rotate(calc(var(--rot-start, 0deg) + 8deg));
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate3d(var(--drift-x, 0px), var(--drift-y, -45px), 0) scale(var(--scale-end, 0.3)) rotate(var(--rot-end, 18deg));
     }
 }

@@ -568,4 +568,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         renderCanvas();
     }
+
+    // ----------------------------------------------------
+    // 11. MOUSE CURSOR HEART TRAIL ("JEJAK LOVE KECIL-KECIL")
+    // ----------------------------------------------------
+    let lastHeartTime = 0;
+    let lastHeartX = -100;
+    let lastHeartY = -100;
+
+    const heartChars = ['♥', '💖', '💗', '💕', '♥'];
+    const heartColors = ['#ff4d8d', '#f472b6', '#fb7185', '#fda4af', '#f43f5e', '#ff85a1', '#fecdd3'];
+
+    function spawnCursorHeart(x, y) {
+        const heart = document.createElement('span');
+        heart.className = 'cursor-heart-particle';
+        
+        // Randomize character & aesthetics
+        const char = heartChars[Math.floor(Math.random() * heartChars.length)];
+        const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+        const size = Math.floor(Math.random() * 8) + 12; // 12px - 19px (cute small hearts)
+        const rotStart = (Math.random() * 40 - 20) + 'deg';
+        const rotEnd = (Math.random() * 60 - 30) + 'deg';
+        const driftX = (Math.random() * 32 - 16) + 'px';
+        const driftY = -(Math.random() * 30 + 25) + 'px';
+        const duration = (Math.random() * 0.35 + 0.75).toFixed(2) + 's';
+
+        heart.textContent = char;
+        heart.style.left = `${x}px`;
+        heart.style.top = `${y}px`;
+        heart.style.color = color;
+        heart.style.fontSize = `${size}px`;
+        heart.style.textShadow = `0 0 8px ${color}88, 0 0 16px ${color}44`;
+        heart.style.setProperty('--rot-start', rotStart);
+        heart.style.setProperty('--rot-end', rotEnd);
+        heart.style.setProperty('--drift-x', driftX);
+        heart.style.setProperty('--drift-y', driftY);
+        heart.style.setProperty('--anim-duration', duration);
+
+        document.body.appendChild(heart);
+
+        heart.addEventListener('animationend', () => {
+            heart.remove();
+        });
+    }
+
+    function handleHeartMove(e) {
+        const now = performance.now();
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+        if (clientX === undefined || clientY === undefined) return;
+
+        const dist = Math.hypot(clientX - lastHeartX, clientY - lastHeartY);
+
+        // Throttle: trigger if cursor moved at least 14px and at least 35ms passed
+        if (dist > 14 && (now - lastHeartTime > 35)) {
+            spawnCursorHeart(clientX, clientY);
+            lastHeartTime = now;
+            lastHeartX = clientX;
+            lastHeartY = clientY;
+        }
+    }
+
+    window.addEventListener('pointermove', handleHeartMove, { passive: true });
+    window.addEventListener('touchmove', handleHeartMove, { passive: true });
 });
