@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website Biodata & Portofolio Personal Windi Rihanafsa - Mahasiswa Pendidikan Ilmu Komputer Universitas Pendidikan Indonesia (UPI). Menampilkan profil, galeri kampus, dan pemutar musik lagu Hindia - everything u are.">
+    <meta name="keywords" content="Windi Rihanafsa, Windi UPI, Pendidikan Ilmu Komputer, Portfolio Pink, Hindia everything u are, Biodata Windi">
+    <meta name="author" content="Windi Rihanafsa">
+    <meta name="theme-color" content="#ff75a0">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Windi Rihanafsa • Portfolio & Personal Space">
+    <meta property="og:description" content="Website Pribadi Windi Rihanafsa - Mahasiswa Pendidikan Ilmu Komputer UPI. Desain Modern & Aesthetic Pink dengan Music Player Hindia.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/hero-windi.jpg">
+
+    <title>Windi Rihanafsa • Official Portfolio & Biodata</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+</head>
+<body>
+    <!-- Ambient Background Lighting -->
+    <div class="ambient-glow glow-pink-1" aria-hidden="true"></div>
+    <div class="ambient-glow glow-pink-2" aria-hidden="true"></div>
+    <div class="ambient-glow glow-pink-3" aria-hidden="true"></div>
+    <canvas id="ambientCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-container">
+            <a href="#hero" class="brand-logo" aria-label="Windi Rihanafsa Home">
+                <span class="sparkle-icon">✦</span>
+                <span class="brand-name">Windi<span class="brand-accent">.</span></span>
+            </a>
+
+            <nav class="nav-desktop" aria-label="Navigasi Utama">
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-item active">Home</a></li>
+                    <li><a href="#featured-photos" class="nav-item">Momen Kampus</a></li>
+                    <li><a href="#about" class="nav-item">Tentang Saya</a></li>
+                    <li><a href="#music-section" class="nav-item">Music & Lyrics</a></li>
+                    <li><a href="#contact" class="nav-item">Kontak</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Ganti Tema (Terang / Gelap)" title="Ganti Tema">
+                    <span class="theme-icon light-icon">🌸</span>
+                    <span class="theme-icon dark-icon">🌙</span>
+                </button>
+
+                <!-- Interactive Greet Button -->
+                <button class="btn-sapa-nav" id="btnSapaNav" aria-label="Sapa Windi">
+                    <span>Sapa Windi 👋</span>
+                </button>
+
+                <!-- Mobile Hamburger Toggle -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka Menu Navigasi" aria-expanded="false">
+                    <span class="hamburger-line line-1"></span>
+                    <span class="hamburger-line line-2"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div class="mobile-drawer" id="mobileDrawer">
+            <ul class="mobile-nav-list">
+                <li><a href="#hero" class="mobile-nav-link">🏠 Home</a></li>
+                <li><a href="#featured-photos" class="mobile-nav-link">📸 Momen Kampus</a></li>
+                <li><a href="#about" class="mobile-nav-link">🌸 Tentang Saya</a></li>
+                <li><a href="#music-section" class="mobile-nav-link">🎵 Music & Lyrics</a></li>
+                <li><a href="#contact" class="mobile-nav-link">💌 Hubungi Saya</a></li>
+            </ul>
+            <div class="mobile-drawer-footer">
+                <button class="btn-sapa-mobile" id="btnSapaMobile">
+                    <span>Klik untuk Sapa Windi 👋</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent">
+        <!-- ============================================== -->
+        <!-- 1. HERO SECTION: FOTO AWAL + SPOTIFY PLAYER    -->
+        <!-- ============================================== -->
+        <section class="hero-section" id="hero">
+            <div class="hero-wrapper">
+                <!-- Left Column: Introduction & Details -->
+                <div class="hero-text-content">
+                    <div class="status-badge-wrapper">
+                        <span class="pulsing-dot"></span>
+                        <span class="status-text">Mahasiswa Pendidikan Ilmu Komputer • UPI Bandung</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Halo, Aku <br>
+                        <span class="gradient-text-pink">Windi Rihanafsa</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Selamat datang di ruang pribadiku! Mahasiswa <strong>Pendidikan Ilmu Komputer</strong> di 
+                        <strong>Universitas Pendidikan Indonesia</strong>. Suka mengeksplorasi teknologi, desain yang cantik, 
+                        memasak, menikmati sinema, dan menghabiskan waktu ditemani lagu-lagu bermakna.
+                    </p>
+
+                    <!-- Hero Quick CTAs -->
+                    <div class="hero-cta-group">
+                        <button class="btn-primary-pink" id="heroPlayMusicBtn">
+                            <span class="play-icon-symbol">▶</span>
+                            <span>Putar "everything u are"</span>
+                        </button>
+                        <button class="btn-secondary-pink" id="heroGreetBtn">
+                            <span>Klik untuk sapa 👋</span>
+                        </button>
+                    </div>
+
+                    <!-- Mini Highlights Row -->
+                    <div class="hero-pills-row">
+                        <div class="pill-chip">
+                            <span class="pill-emoji">🎓</span>
+                            <span>UPI Bandung</span>
+                        </div>
+                        <div class="pill-chip">
+                            <span class="pill-emoji">💻</span>
+                            <span>Pend. Ilmu Komputer</span>
+                        </div>
+                        <div class="pill-chip">
+                            <span class="pill-emoji">🍳</span>
+                            <span>Cooking</span>
+                        </div>
+                        <div class="pill-chip">
+                            <span class="pill-emoji">🎧</span>
+                            <span>Hindia Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: User's Uploaded Photo with Spotify Music Card Integration -->
+                <div class="hero-visual-content">
+                    <div class="hero-photo-card" id="heroPhotoCard">
+                        <div class="photo-glow-border"></div>
+                        <div class="photo-container">
+                            <img src="images/hero-windi.jpg" alt="Windi Rihanafsa - everything u are aesthetic" class="hero-main-img" id="heroMainImage">
+                        </div>
+
+                        <!-- Floating Micro-Badge Top Left -->
+                        <div class="floating-badge badge-top-left">
+                            <span class="badge-icon">🌸</span>
+                            <div class="badge-text-box">
+                                <span class="badge-sub">Personal Space</span>
+                                <span class="badge-main">Windi Rihanafsa</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Live Music Player Card (Integrated Spotify Aesthetic) -->
+                        <div class="spotify-hero-card" id="spotifyHeroCard">
+                            <div class="player-top-row">
+                                <div class="album-thumb-box">
+                                    <div class="album-dove-art">
+                                        <svg viewBox="0 0 100 100" class="dove-svg" aria-hidden="true">
+                                            <circle cx="50" cy="50" r="48" fill="#18181b"/>
+                                            <!-- Aesthetic Doves Minimalist Vector -->
+                                            <path d="M28 58 C 35 48, 48 40, 62 42 C 55 46, 50 54, 46 64 C 40 60, 34 60, 28 58 Z" fill="#ffffff" opacity="0.9"/>
+                                            <path d="M52 38 C 58 28, 70 24, 80 26 C 74 30, 71 38, 68 46 C 62 42, 57 41, 52 38 Z" fill="#e4e4e7" opacity="0.8"/>
+                                            <circle cx="68" cy="30" r="1.5" fill="#18181b"/>
+                                            <circle cx="42" cy="46" r="1.5" fill="#18181b"/>
+                                        </svg>
+                                    </div>
+                                    <div class="sound-wave-bars" id="heroSoundWaves" aria-hidden="true">
+                                        <span class="bar"></span>
+                                        <span class="bar"></span>
+                                        <span class="bar"></span>
+                                        <span class="bar"></span>
+                                    </div>
+                                </div>
+
+                                <div class="track-info">
+                                    <div class="track-title-wrapper">
+                                        <span class="track-title">everything u are</span>
+                                        <span class="track-verified-badge" title="Official Release">✓</span>
+                                    </div>
+                                    <span class="track-artist">Hindia • <em>Doves, '25 on Blank Canvas</em></span>
+                                </div>
+
+                                <button class="track-like-btn" id="trackLikeBtn" aria-label="Sukai Lagu Ini" title="Love this song">
+                                    <span class="heart-icon">♥</span>
+                                </button>
+                            </div>
+
+                            <!-- Progress Bar & Timing -->
+                            <div class="player-scrubber-area">
+                                <div class="progress-bar-container" id="progressBarContainer" role="slider" aria-label="Progress Pemutar Musik" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                                    <div class="progress-thumb" id="progressThumb"></div>
+                                </div>
+                                <div class="time-row">
+                                    <span class="time-current" id="timeCurrent">0:00</span>
+                                    <span class="time-duration" id="timeDuration">3:56</span>
+                                </div>
+                            </div>
+
+                            <!-- Audio Controls Bar -->
+                            <div class="player-controls-row">
+                                <button class="control-btn btn-shuffle" id="btnShuffle" title="Acak Lagu" aria-label="Acak Lagu">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+                                </button>
+                                <button class="control-btn btn-prev" id="btnPrev" title="Sebelumnya" aria-label="Lagu Sebelumnya">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="11 19 2 12 11 5 11 19"/><polygon points="22 19 13 12 22 5 22 19"/></svg>
+                                </button>
+
+                                <!-- Big Main Play/Pause Button -->
+                                <button class="btn-play-pause" id="btnPlayPause" aria-label="Putar atau Jeda Musik" title="Putar / Jeda">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" id="playIconSvg">
+                                        <polygon points="5 3 19 12 5 21 5 3"/>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" id="pauseIconSvg" style="display: none;">
+                                        <rect x="6" y="4" width="4" height="16"/>
+                                        <rect x="14" y="4" width="4" height="16"/>
+                                    </svg>
+                                </button>
+
+                                <button class="control-btn btn-next" id="btnNext" title="Selanjutnya" aria-label="Lagu Selanjutnya">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg>
+                                </button>
+                                <button class="control-btn btn-lyrics" id="btnToggleLyrics" title="Tampilkan Lirik" aria-label="Tampilkan Lirik">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Interactive Volume Slider & Status -->
+                            <div class="player-footer-row">
+                                <div class="volume-box">
+                                    <button class="volume-btn" id="volumeBtn" aria-label="Mute / Unmute" title="Volume">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" id="volumeHighSvg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" id="volumeMutedSvg" style="display: none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                                    </button>
+                                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="0.9" aria-label="Volume Musik">
+                                </div>
+                                <span class="player-tag">Audio 320kbps • Hindia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 2. TWO PHOTOS SECTION: MOMEN KAMPUS DI BAWAHNYA -->
+        <!-- ============================================== -->
+        <section class="featured-photos-section" id="featured-photos">
+            <div class="section-container">
+                <div class="section-header-centered">
+                    <div class="sub-badge-pink">
+                        <span class="badge-sparkle">✦</span>
+                        <span>Dokumentasi Kampus</span>
+                    </div>
+                    <h2 class="section-title">Momen & Jejak Kebersamaan di UPI</h2>
+                    <p class="section-subtitle">
+                        Dua potret berharga yang merekam jejak perjalanan bersama rekan-rekan Pendidikan Ilmu Komputer Universitas Pendidikan Indonesia.
+                    </p>
+                </div>
+
+                <!-- 2 Photos Grid Showcase -->
+                <div class="dual-photos-grid">
+                    <!-- Photo 1: Angkatan UPI di Villa Isola -->
+                    <article class="photo-card-showcase" data-photo-id="1">
+                        <div class="photo-card-inner">
+                            <div class="photo-img-wrap">
+                                <img src="images/foto-angkatan.jpeg" alt="Angkatan Mahasiswa Pendidikan Ilmu Komputer UPI di Villa Isola" class="showcase-img" loading="lazy">
+                                <div class="photo-overlay-glass">
+                                    <button class="btn-expand-photo" aria-label="Perbesar Foto Angkatan" data-img-src="images/foto-angkatan.jpeg" data-caption="Angkatan Mahasiswa Pendidikan Ilmu Komputer UPI • Villa Isola Bandung">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                        <span>Lihat Penuh</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="photo-caption-box">
+                                <div class="caption-header">
+                                    <span class="location-badge">🏛 Villa Isola • Bumi Siliwangi</span>
+                                    <span class="year-badge">UPI Bandung</span>
+                                </div>
+                                <h3 class="photo-title">Keluarga Besar Mahasiswa Pendidikan Ilmu Komputer</h3>
+                                <p class="photo-description">
+                                    Momen kebersamaan angkatan di hadapan gedung ikonik bersejarah Villa Isola UPI. Berbagi cerita, mimpi, dan tekad untuk berkembang bersama dalam dunia ilmu komputer dan pendidikan.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Photo 2: Lab Komputer -->
+                    <article class="photo-card-showcase" data-photo-id="2">
+                        <div class="photo-card-inner">
+                            <div class="photo-img-wrap">
+                                <img src="images/foto-lab.jpeg" alt="Suasana Praktikum di Laboratorium Komputer Pendidikan Ilmu Komputer UPI" class="showcase-img" loading="lazy">
+                                <div class="photo-overlay-glass">
+                                    <button class="btn-expand-photo" aria-label="Perbesar Foto Lab Komputer" data-img-src="images/foto-lab.jpeg" data-caption="Sesi Praktikum & Coding di Laboratorium Komputer FPMIPA UPI">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                        <span>Lihat Penuh</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="photo-caption-box">
+                                <div class="caption-header">
+                                    <span class="location-badge">💻 Lab Komputer • FPMIPA</span>
+                                    <span class="year-badge">Sesi Praktikum</span>
+                                </div>
+                                <h3 class="photo-title">Kolaborasi & Belajar di Laboratorium Komputer</h3>
+                                <p class="photo-description">
+                                    Suasana hangat saat praktikum coding, riset tugas kuliah, dan diskusi pemecahan masalah bersama teman sekelas. Di tempat ini berbagai ide diterjemahkan menjadi kode nyata.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 3. TENTANG SAYA & BIODATA (BENTO GRID)         -->
+        <!-- ============================================== -->
+        <section class="about-section" id="about">
+            <div class="section-container">
+                <div class="section-header-centered">
+                    <div class="sub-badge-pink">
+                        <span class="badge-sparkle">✦</span>
+                        <span>Profil & Biodata</span>
+                    </div>
+                    <h2 class="section-title">Lebih Dekat dengan Windi</h2>
+                    <p class="section-subtitle">
+                        Mengenal latar belakang akademik, minat di dunia komputasi, hobi, dan hal-hal yang mewarnai keseharianku.
+                    </p>
+                </div>
+
+                <!-- Modern Bento Grid -->
+                <div class="bento-grid">
+                    <!-- Bento 1: Akademik & Kampus -->
+                    <div class="bento-card bento-card-academic">
+                        <div class="bento-icon-wrapper">
+                            <span class="bento-icon">🎓</span>
+                        </div>
+                        <span class="bento-category">Pendidikan Tinggi</span>
+                        <h3 class="bento-title">Universitas Pendidikan Indonesia</h3>
+                        <p class="bento-text">
+                            Menempuh studi pada program studi <strong>Pendidikan Ilmu Komputer</strong> di universitas terkemuka di Kota Bandung, memadukan kompetensi ilmu komputasi dengan metodologi edukasi modern.
+                        </p>
+                        <div class="academic-tags">
+                            <span class="tag-pill">UPI Bumi Siliwangi</span>
+                            <span class="tag-pill">FPMIPA</span>
+                            <span class="tag-pill">Computer Science Edu</span>
+                        </div>
+                    </div>
+
+                    <!-- Bento 2: Hobi & Gaya Hidup -->
+                    <div class="bento-card bento-card-hobbies">
+                        <div class="bento-icon-wrapper">
+                            <span class="bento-icon">🌸</span>
+                        </div>
+                        <span class="bento-category">Minat & Hobi</span>
+                        <h3 class="bento-title">Hal-Hal yang Aku Gemari</h3>
+                        <ul class="hobby-list">
+                            <li class="hobby-item">
+                                <span class="hobby-icon">🍳</span>
+                                <div class="hobby-content">
+                                    <strong>Memasak & Kuliner</strong>
+                                    <span>Mencoba resep-resep baru dan menyajikan masakan lezat untuk dinikmati bersama.</span>
+                                </div>
+                            </li>
+                            <li class="hobby-item">
+                                <span class="hobby-icon">🎵</span>
+                                <div class="hobby-content">
+                                    <strong>Mendengarkan Musik</strong>
+                                    <span>Menikmati musik yang menenangkan, lirik reflektif karya Hindia, Nadin, dan lagu-lagu pop akustik.</span>
+                                </div>
+                            </li>
+                            <li class="hobby-item">
+                                <span class="hobby-icon">🎬</span>
+                                <div class="hobby-content">
+                                    <strong>Nonton Film & Serial</strong>
+                                    <span>Melepaskan penat setelah kuliah dengan maraton film bergenre drama, misteri, atau animasi.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Bento 3: Tech & Skills -->
+                    <div class="bento-card bento-card-skills">
+                        <div class="bento-icon-wrapper">
+                            <span class="bento-icon">💻</span>
+                        </div>
+                        <span class="bento-category">Keahlian & Minat Teknologi</span>
+                        <h3 class="bento-title">Eksplorasi Komputasi</h3>
+                        <p class="bento-text">
+                            Antusias mendalami pengembangan web interaktif, logika pemrograman, dan pembuatan antarmuka pengguna yang estetik.
+                        </p>
+                        <div class="skills-chips-wrap">
+                            <span class="skill-chip">HTML5 & Semantic</span>
+                            <span class="skill-chip">CSS Modern & Flexbox</span>
+                            <span class="skill-chip">JavaScript (ES6+)</span>
+                            <span class="skill-chip">Python Programming</span>
+                            <span class="skill-chip">UI/UX Aesthetic</span>
+                            <span class="skill-chip">Algoritma Dasar</span>
+                        </div>
+                    </div>
+
+                    <!-- Bento 4: Quote & Visi -->
+                    <div class="bento-card bento-card-quote">
+                        <div class="bento-quote-symbol">“</div>
+                        <h3 class="quote-text">
+                            "Cerita kita tak jauh berbeda... Namun suratmu 'kan kuceritakan ke anak-anakku nanti, bahwa aku pernah dicintai with everything u are."
+                        </h3>
+                        <div class="quote-author-box">
+                            <span class="quote-author-name">Hindia — everything u are</span>
+                            <span class="quote-author-role">Inspirasi Lagu Favorit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 4. SECTION MUSIK INTERAKTIF & LIRIK LENGKAP    -->
+        <!-- ============================================== -->
+        <section class="music-section" id="music-section">
+            <div class="section-container">
+                <div class="section-header-centered">
+                    <div class="sub-badge-pink">
+                        <span class="badge-sparkle">✦</span>
+                        <span>Now Playing</span>
+                    </div>
+                    <h2 class="section-title">Alunan Lagu "everything u are"</h2>
+                    <p class="section-subtitle">
+                        Lagu istimewa dari Hindia dalam album <em>Doves, '25 on Blank Canvas</em>. Putar musiknya dan resapi lirik yang penuh ketulusan.
+                    </p>
+                </div>
+
+                <div class="music-lyrics-layout">
+                    <!-- Left: Interactive Player Card -->
+                    <div class="music-console-card">
+                        <div class="console-art-wrap">
+                            <img src="images/hero-windi.jpg" alt="everything u are Windi Hindia" class="console-art-img">
+                            <div class="console-art-overlay">
+                                <button class="console-big-play-btn" id="consolePlayBtn" aria-label="Putar / Jeda Lagu">
+                                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" id="consolePlaySvg">
+                                        <polygon points="5 3 19 12 5 21 5 3"/>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" id="consolePauseSvg" style="display: none;">
+                                        <rect x="6" y="4" width="4" height="16"/>
+                                        <rect x="14" y="4" width="4" height="16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="console-meta-info">
+                            <span class="console-tag">Hindia • Track 04</span>
+                            <h3 class="console-song-title">everything u are</h3>
+                            <p class="console-album-title">Album: Doves, '25 on Blank Canvas (2025)</p>
+
+                            <!-- Audio Progress -->
+                            <div class="console-progress-box">
+                                <div class="progress-bar-container" id="consoleProgressContainer" role="slider" aria-label="Progress Bar" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+                                    <div class="progress-bar-fill" id="consoleProgressFill"></div>
+                                </div>
+                                <div class="time-row">
+                                    <span id="consoleTimeCurrent">0:00</span>
+                                    <span id="consoleTimeTotal">3:56</span>
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <div class="console-buttons-row">
+                                <button class="btn-console-action" id="consoleLoopBtn" title="Ulangi Lagu" aria-label="Loop Lagu">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                                </button>
+                                <button class="btn-console-main" id="consoleMainToggle">
+                                    <span id="consoleToggleLabel">Putar Musik Sekarang</span>
+                                </button>
+                                <a href="https://open.spotify.com/track/4jD2Y3pQ15R28j5dE2bL9w" target="_blank" rel="noopener noreferrer" class="btn-console-action btn-spotify-link" title="Buka di Spotify" aria-label="Buka Spotify">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.524 4.477 10 10 10s10-4.476 10-10c0-5.523-4.477-10-10-10zm4.587 14.425c-.18.295-.563.387-.857.207-2.35-1.435-5.308-1.76-8.792-.963-.335.077-.67-.133-.746-.468-.077-.334.132-.67.467-.746 3.808-.87 7.076-.5 9.721 1.114.294.18.387.562.207.856zm1.224-2.72c-.226.368-.71.482-1.078.256-2.69-1.653-6.79-2.131-9.97-1.165-.413.125-.85-.108-.975-.522-.125-.414.108-.85.522-.975 3.632-1.103 8.147-.568 11.245 1.328.368.226.482.71.256 1.078zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71c-.494.15-1.016-.129-1.166-.623-.15-.495.13-1.016.624-1.166 3.532-1.072 9.404-.866 13.115 1.337.445.264.59.838.327 1.282-.264.444-.838.59-1.282.327z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Aesthetic Lyrics Box -->
+                    <div class="lyrics-card">
+                        <div class="lyrics-card-header">
+                            <div class="lyrics-header-left">
+                                <span class="lyrics-sparkle">📜</span>
+                                <div>
+                                    <h3 class="lyrics-title">Lirik Lagu</h3>
+                                    <span class="lyrics-subtitle">Hindia — everything u are</span>
+                                </div>
+                            </div>
+                            <span class="lyrics-badge">Full Synchronized Lyrics</span>
+                        </div>
+
+                        <div class="lyrics-scroll-box" id="lyricsScrollBox">
+                            <p class="lyrics-verse" data-time="0">
+                                <em>(Alunan melodi lembut membuka cerita...)</em>
+                            </p>
+                            <p class="lyrics-line" data-time="10">Wajahmu kuingat selalu, lupakan</p>
+                            <p class="lyrics-line" data-time="15">Hal-hal yang menggangguku</p>
+                            <p class="lyrics-line" data-time="20">Karena hari ini mata kita beradu</p>
+                            <p class="lyrics-line" data-time="25">Kita saling bantu melepas perasaan</p>
+
+                            <div class="lyrics-divider"></div>
+
+                            <p class="lyrics-line" data-time="30">Tinggi ke angkasa menantang dunia</p>
+                            <p class="lyrics-line" data-time="35">Merayakan muda tuk satu jam saja</p>
+                            <p class="lyrics-line highlight" data-time="40">Kita hampir mati dan kau selamatkan aku</p>
+                            <p class="lyrics-line highlight" data-time="45">Dan ku menyelamatkanmu dan sekarang aku tahu</p>
+
+                            <div class="lyrics-divider"></div>
+
+                            <p class="lyrics-line chorus" data-time="50">Cerita kita tak jauh berbeda</p>
+                            <p class="lyrics-line chorus" data-time="55"><em>Got beat down by the world, sometimes I wanna fold</em></p>
+                            <p class="lyrics-line chorus highlight" data-time="62">Namun suratmu kan kuceritakan ke anak-anakku nanti</p>
+                            <p class="lyrics-line chorus highlight" data-time="70">Bahwa aku pernah dicintai</p>
+                            <p class="lyrics-line chorus-bold" data-time="78">With everything u are</p>
+                            <p class="lyrics-line chorus-bold" data-time="85">Fully as I am with everything u are 🌸</p>
+
+                            <div class="lyrics-divider"></div>
+
+                            <p class="lyrics-line" data-time="95">Wajahmu yang beragam rupa pastikan</p>
+                            <p class="lyrics-line" data-time="100">Ku tak sendirian</p>
+                            <p class="lyrics-line" data-time="105">Jalani derita kau bawakan kisahmu</p>
+                            <p class="lyrics-line" data-time="110">Aku mendengarkan, oh kita bergantian</p>
+
+                            <div class="lyrics-divider"></div>
+
+                            <p class="lyrics-line" data-time="118">Bertukar nestapa menawar trauma</p>
+                            <p class="lyrics-line" data-time="124">Datang seadanya terasku terbuka</p>
+                            <p class="lyrics-line" data-time="130">Kita hampir mati dan kau selamatkan aku</p>
+                            <p class="lyrics-line" data-time="136">Dan ku menyelamatkanmu dan sekarang aku tahu</p>
+
+                            <div class="lyrics-divider"></div>
+
+                            <p class="lyrics-line chorus" data-time="142">Cerita kita tak jauh berbeda</p>
+                            <p class="lyrics-line chorus" data-time="148"><em>Got beat down by the world, sometimes I wanna fold</em></p>
+                            <p class="lyrics-line chorus highlight" data-time="155">Namun suratmu kan kuceritakan ke anak-anakku nanti</p>
+                            <p class="lyrics-line chorus highlight" data-time="163">Bahwa aku pernah dicintai</p>
+
+                            <div class="lyrics-divider"></div>
+
+                            <p class="lyrics-line bridge" data-time="175">Seada-adanya, sekurang-kurangnya</p>
+                            <p class="lyrics-line bridge" data-time="181">Walau sulit utarakan hatiku dengan indah</p>
+                            <p class="lyrics-line bridge" data-time="188">Walau jarang ku bernyanyi dengan cara yang indah</p>
+                            <p class="lyrics-line bridge highlight" data-time="195">Tapi tak sekali pun kisahku pernah kau bantah, hu</p>
+
+                            <div class="lyrics-divider"></div>
+
+                            <p class="lyrics-line chorus-bold" data-time="205">Cerita kita tak jauh berbeda</p>
+                            <p class="lyrics-line chorus-bold" data-time="212">Namun suratmu kan kuceritakan ke anak-anakku nanti</p>
+                            <p class="lyrics-line chorus-bold" data-time="220">Bahwa aku pernah dicintai</p>
+                            <p class="lyrics-line chorus-bold highlight" data-time="226">With everything u are</p>
+                            <p class="lyrics-line chorus-bold highlight" data-time="232">Fully as I am with everything u are ✨</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 5. HUBUNGI SAYA & SOCIALS (REDESIGNED)         -->
+        <!-- ============================================== -->
+        <section class="contact-section" id="contact">
+            <div class="section-container">
+                <div class="section-header-centered">
+                    <div class="sub-badge-pink">
+                        <span class="badge-sparkle">✦</span>
+                        <span>Mari Terhubung</span>
+                    </div>
+                    <h2 class="section-title">Hubungi Saya</h2>
+                    <p class="section-subtitle">
+                        Mari terhubung melalui platform di bawah ini. Terbuka untuk diskusi seputar kuliah, teknologi, maupun sekadar berbagi sapaan hangat.
+                    </p>
+                </div>
+
+                <!-- Contact Channels Grid -->
+                <div class="contact-cards-grid">
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/rihanafsawindi-cmd" target="_blank" rel="noopener noreferrer" class="contact-glass-card github-card">
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box github-icon">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </div>
+                            <span class="external-arrow">↗</span>
+                        </div>
+                        <div class="contact-card-content">
+                            <span class="contact-channel">GitHub Profile</span>
+                            <h3 class="contact-handle">@rihanafsawindi-cmd</h3>
+                            <p class="contact-desc">Lihat repositori kode, tugas proyek kuliah, dan eksplorasi pemrograman.</p>
+                        </div>
+                    </a>
+
+                    <!-- Instagram Card -->
+                    <a href="https://www.instagram.com/windirhnfs" target="_blank" rel="noopener noreferrer" class="contact-glass-card instagram-card">
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box instagram-icon">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </div>
+                            <span class="external-arrow">↗</span>
+                        </div>
+                        <div class="contact-card-content">
+                            <span class="contact-channel">Instagram Pribadi</span>
+                            <h3 class="contact-handle">@windirhnfs</h3>
+                            <p class="contact-desc">Momen harian, foto kegiatan kampus, dan potret cerita visual.</p>
+                        </div>
+                    </a>
+
+                    <!-- Email Card -->
+                    <div class="contact-glass-card email-card">
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box email-icon">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <button class="btn-copy-email" id="btnCopyEmail" title="Salin Alamat Email" aria-label="Salin Email">
+                                <span class="copy-text">Salin</span>
+                            </button>
+                        </div>
+                        <div class="contact-card-content">
+                            <span class="contact-channel">Email Langsung</span>
+                            <h3 class="contact-handle">rihanafsawindi@gmail.com</h3>
+                            <p class="contact-desc">Kirimkan pesan atau tawaran kolaborasi akademik via email.</p>
+                            <a href="mailto:rihanafsawindi@gmail.com" class="btn-mail-direct">
+                                <span>Kirim Surel</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Message Form -->
+                <div class="quick-message-box">
+                    <div class="message-box-header">
+                        <span class="sparkle-icon">💬</span>
+                        <h3 class="message-box-title">Tinggalkan Pesan Cepat untuk Windi</h3>
+                    </div>
+                    <form class="message-form" id="quickMessageForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="senderName" class="form-label">Nama Anda</label>
+                                <input type="text" id="senderName" class="form-input" placeholder="Contoh: Budi Santoso" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="senderEmail" class="form-label">Email Anda</label>
+                                <input type="email" id="senderEmail" class="form-input" placeholder="nama@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="senderMessage" class="form-label">Pesan / Kesan</label>
+                            <textarea id="senderMessage" class="form-textarea" rows="4" placeholder="Tuliskan pesan ramah atau sapaan untuk Windi..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit-message">
+                            <span>Kirimkan Pesan 🌸</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================== -->
+    <!-- PERSISTENT FLOATING BOTTOM MUSIC PILL DOCK     -->
+    <!-- ============================================== -->
+    <div class="floating-music-dock" id="floatingMusicDock" aria-label="Mini Music Player">
+        <div class="dock-left">
+            <div class="dock-art-thumb">
+                <span class="dock-dove-emoji">🕊️</span>
+                <div class="dock-bars" id="dockSoundBars">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="dock-info">
+                <span class="dock-title">everything u are</span>
+                <span class="dock-artist">Hindia</span>
+            </div>
+        </div>
+
+        <div class="dock-center">
+            <button class="dock-btn-play" id="dockPlayBtn" aria-label="Putar / Jeda Musik">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" id="dockPlaySvg"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" id="dockPauseSvg" style="display: none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+            <div class="dock-progress-wrap">
+                <div class="dock-progress-fill" id="dockProgressFill"></div>
+            </div>
+            <span class="dock-time" id="dockTime">0:00</span>
+        </div>
+
+        <div class="dock-right">
+            <button class="dock-btn-expand" id="dockExpandBtn" title="Scroll ke Pemutar Musik" aria-label="Ke Pemutar Musik">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- INTERACTIVE "KLIK UNTUK SAPA 👋" MODAL         -->
+    <!-- ============================================== -->
+    <div class="modal-backdrop" id="greetModal" role="dialog" aria-modal="true" aria-labelledby="greetTitle" style="display: none;">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup Jendela Sapaan">&times;</button>
+            <div class="modal-sparkle-top">🌸 ✦ 🌸</div>
+            <div class="modal-avatar-circle">
+                <img src="images/hero-windi.jpg" alt="Windi Avatar" class="modal-avatar-img">
+            </div>
+            <h3 class="modal-title" id="greetTitle">Haloooo! 👋</h3>
+            <p class="modal-subtitle">Senang sekali kamu sudah mampir ke website pribadiku!</p>
+            <div class="modal-quote-box">
+                <p>
+                    "Terima kasih atas kunjungannya! Semoga harimu menyenangkan dan dipenuhi hal-hal baik, seperti manisnya melodi lagu Hindia 🎵."
+                </p>
+                <span class="modal-signature">— Salam hangat, Windi Rihanafsa 🌸</span>
+            </div>
+            <div class="modal-action-buttons">
+                <button class="btn-modal-primary" id="modalPlayMusic">
+                    <span>Putar Lagu Bersama 🎧</span>
+                </button>
+                <button class="btn-modal-secondary" id="modalCloseBtn2">
+                    <span>Tutup</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- LIGHTBOX MODAL UNTUK PREVIEW DUA FOTO BESAR    -->
+    <!-- ============================================== -->
+    <div class="lightbox-backdrop" id="lightboxModal" role="dialog" aria-modal="true" style="display: none;">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Tutup Foto">&times;</button>
+            <img src="" alt="Preview Foto" id="lightboxImg" class="lightbox-image">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Hidden Native Audio Engine -->
+    <audio id="mainAudioPlayer" preload="auto">
+        <source src="audio/everything_u_are.webm" type="audio/webm">
+    </audio>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-top-row">
+                <div class="footer-brand">
+                    <span class="sparkle-icon">✦</span>
+                    <span class="footer-logo">Windi Rihanafsa</span>
+                    <p class="footer-tagline">Mahasiswa Pendidikan Ilmu Komputer • Universitas Pendidikan Indonesia</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="#hero">Home</a>
+                    <a href="#featured-photos">Momen Kampus</a>
+                    <a href="#about">Tentang</a>
+                    <a href="#music-section">Lagu & Lirik</a>
+                    <a href="#contact">Kontak</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom-row">
+                <p class="footer-copyright">
+                    © 2026 Windi Rihanafsa. Didesain dengan estetika pink, modernitas & cinta 🌸
+                </p>
+                <button class="btn-back-to-top" id="btnBackToTop" aria-label="Kembali ke atas">
+                    <span>Ke Atas</span>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- Main Interactive Script -->
+    <script src="script.js"></script>
+</body>
+</html>
