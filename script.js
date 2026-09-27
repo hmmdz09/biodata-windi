@@ -65,19 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const volumeMutedSvg = document.getElementById('volumeMutedSvg');
     const trackLikeBtn = document.getElementById('trackLikeBtn');
     const btnShuffle = document.getElementById('btnShuffle');
+    const btnQuoteToggle = document.getElementById('btnQuoteToggle');
     const heroPlayMusicBtn = document.getElementById('heroPlayMusicBtn');
-
-    // Controls - Section 4 Console Player
-    const consolePlayBtn = document.getElementById('consolePlayBtn');
-    const consolePlaySvg = document.getElementById('consolePlaySvg');
-    const consolePauseSvg = document.getElementById('consolePauseSvg');
-    const consoleProgressFill = document.getElementById('consoleProgressFill');
-    const consoleProgressContainer = document.getElementById('consoleProgressContainer');
-    const consoleTimeCurrent = document.getElementById('consoleTimeCurrent');
-    const consoleTimeTotal = document.getElementById('consoleTimeTotal');
-    const consoleMainToggle = document.getElementById('consoleMainToggle');
-    const consoleToggleLabel = document.getElementById('consoleToggleLabel');
-    const consoleLoopBtn = document.getElementById('consoleLoopBtn');
 
     // Controls - Floating Dock Player
     const floatingMusicDock = document.getElementById('floatingMusicDock');
@@ -116,15 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             heroSoundWaves.classList.remove('playing');
         }
 
-        // Update Console Player
-        if (consolePlaySvg && consolePauseSvg) {
-            consolePlaySvg.style.display = playing ? 'none' : 'block';
-            consolePauseSvg.style.display = playing ? 'block' : 'none';
-            if (consoleToggleLabel) {
-                consoleToggleLabel.textContent = playing ? 'Jeda Musik (Playing)' : 'Putar Musik Sekarang';
-            }
-        }
-
         // Update Floating Dock Player
         if (dockPlaySvg && dockPauseSvg) {
             dockPlaySvg.style.display = playing ? 'none' : 'block';
@@ -158,13 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Attach Play/Pause Listeners
     if (btnPlayPause) btnPlayPause.addEventListener('click', togglePlay);
-    if (consolePlayBtn) consolePlayBtn.addEventListener('click', togglePlay);
-    if (consoleMainToggle) consoleMainToggle.addEventListener('click', togglePlay);
     if (dockPlayBtn) dockPlayBtn.addEventListener('click', togglePlay);
     if (heroPlayMusicBtn) {
         heroPlayMusicBtn.addEventListener('click', () => {
             if (!isPlaying) togglePlay();
-            document.getElementById('music-section').scrollIntoView({ behavior: 'smooth' });
+            const playerSec = document.getElementById('music-player');
+            if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
@@ -175,40 +154,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const percent = (cur / dur) * 100;
         const timeStr = formatTime(cur);
 
-        // Hero Player
+        // Enlarged Centered Player
         if (progressBarFill) progressBarFill.style.width = `${percent}%`;
         if (progressThumb) progressThumb.style.left = `${percent}%`;
         if (timeCurrent) timeCurrent.textContent = timeStr;
         if (progressBarContainer) progressBarContainer.setAttribute('aria-valuenow', Math.round(percent));
 
-        // Console Player
-        if (consoleProgressFill) consoleProgressFill.style.width = `${percent}%`;
-        if (consoleTimeCurrent) consoleTimeCurrent.textContent = timeStr;
-
         // Floating Dock
         if (dockProgressFill) dockProgressFill.style.width = `${percent}%`;
         if (dockTime) dockTime.textContent = timeStr;
-
-        // Sync with Lyrics
-        syncLyrics(cur);
     });
 
     audio.addEventListener('loadedmetadata', () => {
         const durStr = formatTime(audio.duration);
         if (timeDuration) timeDuration.textContent = durStr;
-        if (consoleTimeTotal) consoleTimeTotal.textContent = durStr;
     });
 
     audio.addEventListener('ended', () => {
         if (!isLooping) {
             updatePlayState(false);
             if (progressBarFill) progressBarFill.style.width = '0%';
-            if (consoleProgressFill) consoleProgressFill.style.width = '0%';
             if (dockProgressFill) dockProgressFill.style.width = '0%';
         }
     });
 
-    // Seeking Logic for progress bars
+    // Seeking Logic for progress bar
     function handleSeek(e, container) {
         const rect = container.getBoundingClientRect();
         const clientX = e.clientX || (e.touches && e.touches[0].clientX);
@@ -221,9 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (progressBarContainer) {
         progressBarContainer.addEventListener('click', (e) => handleSeek(e, progressBarContainer));
-    }
-    if (consoleProgressContainer) {
-        consoleProgressContainer.addEventListener('click', (e) => handleSeek(e, consoleProgressContainer));
     }
 
     // Volume Controls
@@ -277,13 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Loop Button
-    if (consoleLoopBtn) {
-        consoleLoopBtn.addEventListener('click', () => {
-            isLooping = !isLooping;
-            audio.loop = isLooping;
-            consoleLoopBtn.classList.toggle('active', isLooping);
-            showToast(isLooping ? '🔁 Putar ulang lagu aktif' : 'Putar ulang lagu nonaktif');
+    // Quote / Lyric highlight tooltip
+    if (btnQuoteToggle) {
+        btnQuoteToggle.addEventListener('click', () => {
+            showToast('💬 "Semua yang kau cari dan tuju, kau sudah jadi semua yang kau butuh..." — Hindia 🌸');
         });
     }
 
@@ -298,71 +262,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (btnNext) {
         btnNext.addEventListener('click', () => {
-            showToast('🎵 Ini adalah lagu pilihan utama Windi: "everything u are"');
+            showToast('🎵 Lagu pilihan utama Windi: "everything u are" • Hindia');
         });
     }
 
     // Scroll to music section from dock
     if (dockExpandBtn) {
         dockExpandBtn.addEventListener('click', () => {
-            document.getElementById('music-section').scrollIntoView({ behavior: 'smooth' });
+            const playerSec = document.getElementById('music-player');
+            if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
     // ----------------------------------------------------
-    // 4. SYNCHRONIZED LYRICS HIGHLIGHTING
-    // ----------------------------------------------------
-    const lyricsLines = document.querySelectorAll('.lyrics-line');
-    const lyricsScrollBox = document.getElementById('lyricsScrollBox');
-
-    function syncLyrics(currentTime) {
-        let activeIndex = -1;
-        lyricsLines.forEach((line, index) => {
-            const lineTime = parseFloat(line.getAttribute('data-time'));
-            if (currentTime >= lineTime) {
-                activeIndex = index;
-            }
-        });
-
-        lyricsLines.forEach((line, index) => {
-            if (index === activeIndex) {
-                if (!line.classList.contains('active')) {
-                    line.classList.add('active');
-                    // Auto-scroll inside lyrics card smoothly
-                    if (lyricsScrollBox) {
-                        const lineTop = line.offsetTop - lyricsScrollBox.offsetTop;
-                        lyricsScrollBox.scrollTo({
-                            top: lineTop - 120,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            } else {
-                line.classList.remove('active');
-            }
-        });
-    }
-
-    // Click lyric line to seek directly
-    lyricsLines.forEach(line => {
-        line.addEventListener('click', () => {
-            const time = parseFloat(line.getAttribute('data-time'));
-            if (!isNaN(time)) {
-                audio.currentTime = time;
-                if (!isPlaying) togglePlay();
-            }
-        });
-    });
-
-    const btnToggleLyrics = document.getElementById('btnToggleLyrics');
-    if (btnToggleLyrics) {
-        btnToggleLyrics.addEventListener('click', () => {
-            document.getElementById('music-section').scrollIntoView({ behavior: 'smooth' });
-        });
-    }
-
-    // ----------------------------------------------------
-    // 5. INTERACTIVE "KLIK UNTUK SAPA 👋" MODAL & CONFETTI
+    // 4. INTERACTIVE "KLIK UNTUK SAPA 👋" MODAL & CONFETTI
     // ----------------------------------------------------
     const greetModal = document.getElementById('greetModal');
     const btnSapaNav = document.getElementById('btnSapaNav');
@@ -394,7 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
         modalPlayMusic.addEventListener('click', () => {
             closeGreetModal();
             if (!isPlaying) togglePlay();
-            document.getElementById('music-section').scrollIntoView({ behavior: 'smooth' });
+            const playerSec = document.getElementById('music-player');
+            if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
